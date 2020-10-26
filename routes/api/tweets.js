@@ -13,11 +13,11 @@ router.get('/', (req, res) => {
         .catch(err => res.status(404).json({ notweetsfound: 'No tweets found'})); 
 }); 
 
-router.get('./user/:user_id', (req, res) => {
+router.get('/user/:user_id', (req, res) => {
     Tweet.find({user: req.params.user_id})
         .then(tweets => res.json(tweets)) 
         .catch(err => 
-                res.status(404).json({notweetsfound: 'No tweets found from that user'}))
+                res.status(404).json(err)) 
 });
 
 router.get('/:id', (req, res) => {
